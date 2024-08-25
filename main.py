@@ -64,5 +64,30 @@ def add():
     description = get_description()
     CSV.add_entry(date, amount, category, description)
 
-CSV.get_transactions("24-08-2024", "31-08-2024")
+# CSV.get_transactions("24-08-2024", "31-08-2024")
 # add()
+
+def main():
+    while True:
+        print("\n1. Add a new Transaction")
+        print("\n2. View transactions and summary within a date range")
+        print("\n3. Exit")
+        
+        choice = input("Enter your choice (1 - 3): ")
+        
+        if choice == "1":
+            add()
+        elif choice == "2":
+            start_date = get_date("Enter the start date (dd-mm-yyyy): ")
+            end_date = get_date("Enter the end date (dd-mm-yyyy): ")
+            df = CSV.get_transactions(start_date, end_date)
+        elif choice == "3":
+            print("Exiting...")
+            break
+        else:
+            print("\nInvalid choice!\nProvide the number in (1 - 3)")
+
+
+if __name__ == '__main__':
+    main()
+            
